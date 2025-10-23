@@ -6,7 +6,6 @@ export default function Tracking() {
     <div className="bg-gray-100 min-h-screen">
         <Navbar />
 
-      {/* Hero Section */}
       <section className="bg-gradient from-blue-100 to-white py-20 px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         
@@ -32,7 +31,6 @@ export default function Tracking() {
     </section>
 
       <section className="border max-w-7xl mx-auto py-12 px-10 bg-white shadow-lg rounded-lg">
-      {/* Search */}
       <div className="bg-white p-6 rounded-md flex flex-col md:flex-row items-center gap-6 mb-8 text-xl">
         <select className="border rounded-md px-4 py-3 w-full md:w-auto text-black">
           <option>Select carrier</option>
@@ -54,7 +52,6 @@ export default function Tracking() {
         </button>
       </div>
 
-      {/* Carrier Logos */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
         <div className="bg-white rounded-md flex items-center justify-center p-6">
           <Image src="/kerry.png" alt="Kerry Express" width={200} height={120} />
