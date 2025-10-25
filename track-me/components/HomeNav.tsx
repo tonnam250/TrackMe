@@ -23,25 +23,25 @@ export default function HomeNav() {
 
             {/* desktop nav */}
             <div className="hidden sm:flex sm:justify-center sm:items-center sm:space-x-2 md:space-x-5">
-                <a href="/">Home</a>
-                <a href="/Tracking">Tracking</a>
-                <a href="/">Contact</a>
-                <a href="/" className="p-2 bg-white text-[#0052CC] rounded-lg shadow-lg">Sign In</a>
+                <Link href="/">Home</Link>
+                <Link href="/Tracking">Tracking</Link>
+                <Link href="/">Contact</Link>
+                <Link href="/" className="p-2 bg-white text-[#0052CC] rounded-lg shadow-lg">Sign In</Link>
             </div>
             {/* desktop nav */}
 
             {/* sidebar */}
             <div className={`fixed h-full w-56 right-0 top-0 bg-[#2271e7] flex flex-col items-center justify-between pt-24 pb-10 px-5 transition-transform duration-300 ${ isOpen ? "translate-x-0" : "translate-x-60"}`}>
-                <button className="absolute top-16 -left-4 bg-white rounded-full text-[#0052CC]" onClick={() => setIsOpen(false)}>
+                <button className="absolute top-16 -left-4 bg-white rounded-full text-[#0052CC] border-2 border-[#2271e7]" onClick={() => setIsOpen(false)}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24">
                         <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m9 5l6 7l-6 7" />
                     </svg>
                 </button>
 
                 <div className="flex flex-col justify-center items-center space-y-10">
-                    <a href="/">Home</a>
-                    <a href="/Tracking">Tracking</a>
-                    <a href="/">Contact</a>
+                    <Link href="/">Home</Link>
+                    <Link href="/Tracking">Tracking</Link>
+                    <Link href="/">Contact</Link>
                 </div>
                 <a href="/" className="p-2 bg-white text-[#0052CC] rounded-lg shadow-lg w-full text-center">Sign In</a>
             </div>
