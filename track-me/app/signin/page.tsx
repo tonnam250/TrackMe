@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import Navbar from "../components/Navbar";
 
 export default function Signin() {
   const [formData, setFormData] = useState({
@@ -22,7 +21,6 @@ export default function Signin() {
   };
   return (
     <div className="bg-gray-100 min-h-screen">
-      <Navbar />
 
       {/* พื้นหลังสีฟ้าอ่อน + กล่อง signin กลางจอ */}
       <div className="min-h-[100vh] flex flex-col items-center justify-center bg-blue-100 py-20">

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Navbar from "../components/Navbar";
 
 export default function Contact() {
   const handleSubmit = (e) => {
@@ -10,7 +9,6 @@ export default function Contact() {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-        <Navbar />
         <div className="min-h-screen bg-blue-100 p-10">
         <h1 className="md:text-6xl font-extrabold text-blue-800 mb-14 drop-shadow-sm">Contact</h1>
 
