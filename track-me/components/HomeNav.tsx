@@ -26,7 +26,7 @@ export default function HomeNav() {
                 <Link href="/">Home</Link>
                 <Link href="/Tracking">Tracking</Link>
                 <Link href="/">Contact</Link>
-                <Link href="/" className="p-2 bg-white text-[#0052CC] rounded-lg shadow-lg">Sign In</Link>
+                <Link href="/signin" className="p-2 bg-white text-[#0052CC] rounded-lg shadow-lg">Sign In</Link>
             </div>
             {/* desktop nav */}
 
