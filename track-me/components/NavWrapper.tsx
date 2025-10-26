@@ -1,13 +1,15 @@
 "use client"
 
 import { usePathname } from "next/navigation";
-import SignedInNav from "./SignedInNav";
-import HomeNav from "./HomeNav";
+import LandingNav from "./HomeNav";
+import SignUpNav from "./SignUpNav";
+import SignInNav from "./SignInNav"
 
 export default function NavWrapper() {
     const pathname = usePathname();
 
-    if (pathname === "/") return <HomeNav/>;
+    if (pathname === "/signin") return <SignInNav/>
+    else if (pathname === "/signup") return <SignUpNav/>
 
-    return <SignedInNav/>
+    return <LandingNav/>
 }

@@ -8,6 +8,7 @@ export default function Signin() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [modalTopic, setModalTopic] = useState("");
+  const [modalButtonColor, setModalButtonColor] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,6 +29,7 @@ export default function Signin() {
       if (!res.ok) {
         setModalTopic("Login Failed");
         setModalMessage(data.message || "Unknown error");
+        setModalButtonColor("bg-red-600");
         setModalOpen(true);
         return;
       }
@@ -35,6 +37,7 @@ export default function Signin() {
       // Success
       setModalTopic("Login Successful");
       setModalMessage("Welcome, " + data.user.username + "!");
+      setModalButtonColor("bg-green-600");
       setModalOpen(true);
 
       // Save login state
@@ -101,6 +104,7 @@ export default function Signin() {
         isOpen={modalOpen}
         topic={modalTopic}
         message={modalMessage}
+        buttonColor={modalButtonColor}
         onClose={() => setModalOpen(false)}
       />
     </div>

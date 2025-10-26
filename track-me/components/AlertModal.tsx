@@ -4,10 +4,11 @@ interface AlertModalProps {
   isOpen: boolean;
   message: string;
   topic: string;
+  buttonColor: string;
   onClose: () => void;
 }
 
-export default function AlertModal({ isOpen, message, topic, onClose }: AlertModalProps) {
+export default function AlertModal({ isOpen, message, topic, buttonColor, onClose }: AlertModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -20,7 +21,7 @@ export default function AlertModal({ isOpen, message, topic, onClose }: AlertMod
         <p className="text-gray-700">{message}</p>
         <button
           onClick={onClose}
-          className="mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+          className={`mt-4 w-full ${buttonColor} text-white py-2 rounded-lg hover:${buttonColor} transition`}
         >
           OK
         </button>

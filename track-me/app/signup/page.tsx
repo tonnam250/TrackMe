@@ -7,6 +7,7 @@ export default function Signup() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [modalTopic, setModalTopic] = useState("");
+  const [modalButtonColor, setModalButtonColor] = useState("");
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -38,13 +39,15 @@ export default function Signup() {
         setModalMessage("Error creating user: " + (data?.message || "Unknown"));
       } else {
         setModalMessage("User created successfully!");
-        setModalTopic("Successful!")
+        setModalTopic("Successful!");
+        setModalButtonColor("bg-green-600");
         setFormData({ firstname: "", lastname: "", username: "", email: "", password: "", confirmPassword: "", phone: "", address: "" });
       }
       setModalOpen(true);
     } catch (err) {
       console.error("Network error:", err);
       setModalMessage("Network error, check console.");
+      setModalButtonColor("bg-red-600");
       setModalOpen(true);
     }
   };
@@ -142,8 +145,7 @@ export default function Signup() {
         </p>
       </form>
 
-      <AlertModal isOpen={modalOpen} message={modalMessage} topic={modalTopic} onClose={() => setModalOpen(false)} />
-
+      <AlertModal isOpen={modalOpen} message={modalMessage} topic={modalTopic} buttonColor={modalButtonColor} onClose={() => setModalOpen(false)} />
     </div>
   );
 }
