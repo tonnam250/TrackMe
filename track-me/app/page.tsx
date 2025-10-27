@@ -10,7 +10,11 @@ export default function Home() {
           <h2 className="self-center sm:self-center sm:text-xl md:text-3xl lg:text-4xl">“ ── The package tracking website.”</h2>
         </div>
         <div className="flex justify-center items-center mt-3 sm:text-xl md:text-3xl lg:text-5xl">
-          <button className="bg-[#0052CC] text-white p-2 md:p-3 lg:p-4 lg:rounded-2xl rounded-lg border border-black">Track Now</button>
+          <a href="/Tracking">
+            <button className="bg-[#0052CC] text-white p-2 md:p-3 lg:p-4 lg:rounded-2xl rounded-lg border border-black">
+              Track Now
+            </button>
+          </a>
         </div>
         <div className="flex flex-col space-y-12 justify-center items-center mt-5 md:text-xl md:mt-10">
           <h3 className="text-2xl font-bold sm:mb-10 md:text-4xl">Why us?</h3>

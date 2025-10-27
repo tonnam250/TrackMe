@@ -70,7 +70,7 @@ export default function Signin() {
               value={formData.username}
               onChange={handleChange}
               required
-              className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
             />
           </div>
           <div>
@@ -81,7 +81,7 @@ export default function Signin() {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
             />
           </div>
           <button

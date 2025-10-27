@@ -8,7 +8,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen pt-15">
         <div className="min-h-screen bg-blue-100 p-10">
         <h1 className="md:text-6xl font-extrabold text-blue-800 mb-14 drop-shadow-sm">Contact</h1>
 

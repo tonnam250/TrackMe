@@ -67,7 +67,7 @@ export default function Signup() {
             value={formData.firstname}
             onChange={handleChange}
             required
-            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
           />
           </div>
           <div>
@@ -79,7 +79,7 @@ export default function Signup() {
             value={formData.lastname}
             onChange={handleChange}
             required
-            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
           />
           </div>
           <div>
@@ -91,7 +91,7 @@ export default function Signup() {
             value={formData.username}
             onChange={handleChange}
             required
-            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
           />
           </div>
           <div>
@@ -103,7 +103,7 @@ export default function Signup() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
           />
           </div>
           <div>
@@ -115,7 +115,7 @@ export default function Signup() {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
           />
           </div>
           <div>
@@ -127,7 +127,7 @@ export default function Signup() {
             value={formData.confirmPassword}
             onChange={handleChange}
             required
-            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
           />
           </div>
           <div>
@@ -138,7 +138,7 @@ export default function Signup() {
             placeholder="Phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
           />
           </div>
           <div>
@@ -149,7 +149,7 @@ export default function Signup() {
             placeholder="Address"
             value={formData.address}
             onChange={handleChange}
-            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
           />
           </div>
         </div>
