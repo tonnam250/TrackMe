@@ -26,7 +26,6 @@ export default function HomeNav() {
                 <Link href="/">Home</Link>
                 <Link href="/Tracking">Tracking</Link>
                 <Link href="/contact">Contact</Link>
-                <Link href="/signup" className="p-2 bg-white text-[#0052CC] rounded-lg shadow-lg">Sign Up</Link>
             </div>
             {/* desktop nav */}
 
@@ -43,7 +42,6 @@ export default function HomeNav() {
                     <Link href="/Tracking">Tracking</Link>
                     <Link href="/contact">Contact</Link>
                 </div>
-                <a href="/signup" className="p-2 bg-white text-[#0052CC] rounded-lg shadow-lg w-full text-center">Sign In</a>
             </div>
             {/* end sidebar */}
         </div>
