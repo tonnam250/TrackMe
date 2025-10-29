@@ -19,7 +19,7 @@ export default function Page() {
                     </div>
                     <div className="flex justify-center">
                     <Image
-                        src="/track-illustration.png"
+                        src="/images/track-illustration.png"
                         alt="Track Package"
                         width={600}
                         height={450}
@@ -57,19 +57,19 @@ export default function Page() {
 
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-8 justify-center items-center">
                     <div className="bg-white rounded-md flex items-center justify-center p-6">
-                    <Image src="/kerry.png" alt="Kerry Express" width={200} height={120} />
+                    <Image src="/images/kerry.png" alt="Kerry Express" width={200} height={120} />
                     </div>
                     <div className="bg-white rounded-md flex items-center justify-center p-6">
-                    <Image src="/flash.png" alt="Flash Express" width={200} height={120} />
+                    <Image src="/images/flash.png" alt="Flash Express" width={200} height={120} />
                     </div>
                     <div className="bg-white rounded-md flex items-center justify-center p-6">
-                    <Image src="/jtexpress.png" alt="J&T Express" width={200} height={120} />
+                    <Image src="/images/jtexpress.png" alt="J&T Express" width={200} height={120} />
                     </div>
                     <div className="bg-white rounded-md flex items-center justify-center p-6">
-                    <Image src="/dhl.png" alt="DHL" width={200} height={120} />
+                    <Image src="/images/dhl.png" alt="DHL" width={200} height={120} />
                     </div>
                     <div className="bg-white rounded-md flex items-center justify-center p-6">
-                    <Image src="/thailandpost.png" alt="Thailand Post" width={200} height={120} />
+                    <Image src="/images/thailandpost.png" alt="Thailand Post" width={200} height={120} />
                     </div>
                 </div>
                 </section>
