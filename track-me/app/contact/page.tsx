@@ -8,8 +8,8 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen pt-15">
-        <div className="min-h-screen bg-blue-100 p-10">
+    <div className="bg-blue-100 min-h-screen pt-15">
+        <div className="min-h-screen p-10">
         <h1 className="md:text-6xl font-extrabold text-blue-800 mb-14 drop-shadow-sm">Contact</h1>
 
         <div className="bg-white p-12 rounded-[2rem] shadow-2xl border border-gray-200 w-full flex flex-col md:flex-row gap-12 min-h-[500px]">

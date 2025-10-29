@@ -7,47 +7,73 @@ export default function Page() {
     const [carrier, setCarrier] = useState("");
 
     return (
-        <div className="h-screen w-full bg-[#E6F0FA] flex flex-col justify-center items-center pt-26 text-[#052072] px-6">
-            <div className="flex flex-col justify-start items-start h-56 w-full self-start space-y-2">
-                <h1 className="text-4xl font-bold">Track your <br />Package</h1>
-                <p>Enter your tracking number to get <br />the current status of your shipment</p>
-            </div>
-            <div className="bg-white border-2 border-gray-400 w-full h-full flex flex-col rounded-xl p-3">
-                <div className="flex justify-center items-center h-16 w-full space-x-5">
-                    <select name="select_carrier" id="select_carrier" defaultValue={''} className="border-2 border-gray-300 p-2 rounded-lg">
-                        <option value="">Select carrier</option>
-                        <option value="kerry">Kerry</option>
-                        <option value="flash">Flash</option>
-                        <option value="jt">J&T</option>
-                        <option value="dhl">DHL</option>
+            <div className="bg-blue-100 min-h-screen pt-16">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div className="flex flex-col justify-center">
+                    <h1 className="text-5xl md:text-7xl font-extrabold text-blue-900 leading-tight mb-6">
+                        Track your <br /> Package
+                    </h1>
+                    <p className="text-lg md:text-xl font-light text-gray-700">
+                        Enter your tracking number to get the <br /> current status of your shipment
+                    </p>
+                    </div>
+                    <div className="flex justify-center">
+                    <Image
+                        src="/track-illustration.png"
+                        alt="Track Package"
+                        width={600}
+                        height={450}
+                        className="object-contain"
+                    />
+                    </div>
+                </div>
+
+                <section className="bg-white py-3 px-6 max-w-7xl mx-auto rounded-[2rem] shadow-2xl border border-gray-200">
+                <div className="bg-white p-6 rounded-md flex flex-col md:flex-row items-center gap-6 mb-8 text-lg">
+                    <select
+                    name="select_carrier"
+                    id="select_carrier"
+                    defaultValue=""
+                    className="border-2 border-gray-300 rounded-md px-4 py-3 w-full md:w-auto text-black"
+                    >
+                    <option value="">Select carrier</option>
+                    <option value="kerry">Kerry Express</option>
+                    <option value="flash">Flash Express</option>
+                    <option value="jt">J&T Express</option>
+                    <option value="dhl">DHL</option>
+                    <option value="thailandpost">Thailand Post</option>
                     </select>
 
-                    <input type="text" placeholder="Enter Tracking Number" className="p-2 border-2 border-gray-300 rounded-lg w-72" />
+                    <input
+                    type="text"
+                    placeholder="Enter Tracking Number"
+                    className="border-2 border-gray-300 rounded-md px-4 py-3 flex-1 w-full text-black"
+                    />
 
-                    <button className="p-2 bg-[#0052CC] text-white rounded-lg w-24">Search</button>
+                    <button className="bg-[#0052CC] hover:bg-blue-700 text-white px-8 py-3 rounded-md w-full md:w-32">
+                    Search
+                    </button>
                 </div>
 
-                <div className="grid grid-cols-2 auto-rows-max justify-center items-center">
-                    <div className="bg-white border-2 border-gray-300 w-24 h-24 rounded-lg flex items-center justify-items-center">
-                        <Image
-                            src="/images/Kerry-Express-Logo.png"
-                            alt="kerry_logo"
-                            width={200}
-                            height={80}
-                            className="h-auto"
-                        />
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-8 justify-center items-center">
+                    <div className="bg-white rounded-md flex items-center justify-center p-6">
+                    <Image src="/kerry.png" alt="Kerry Express" width={200} height={120} />
                     </div>
-                    <div className="bg-white border-2 border-gray-300 w-24 h-24 rounded-lg flex items-center justify-items-center">
-                        <Image
-                            src="/images/Kerry-Express-Logo.png"
-                            alt="kerry_logo"
-                            width={200}
-                            height={80}
-                            className="h-auto"
-                        />
+                    <div className="bg-white rounded-md flex items-center justify-center p-6">
+                    <Image src="/flash.png" alt="Flash Express" width={200} height={120} />
+                    </div>
+                    <div className="bg-white rounded-md flex items-center justify-center p-6">
+                    <Image src="/jtexpress.png" alt="J&T Express" width={200} height={120} />
+                    </div>
+                    <div className="bg-white rounded-md flex items-center justify-center p-6">
+                    <Image src="/dhl.png" alt="DHL" width={200} height={120} />
+                    </div>
+                    <div className="bg-white rounded-md flex items-center justify-center p-6">
+                    <Image src="/thailandpost.png" alt="Thailand Post" width={200} height={120} />
                     </div>
                 </div>
+                </section>
             </div>
-        </div>
-    )
+            );
+
 }
