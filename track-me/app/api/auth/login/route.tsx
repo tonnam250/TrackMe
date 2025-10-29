@@ -1,38 +1,50 @@
 import { NextResponse } from "next/server";
 import { ddbDocClient } from "@/lib/dynamo";
-import { ScanCommand } from "@aws-sdk/lib-dynamodb";
+import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
   try {
     const { username, password } = await req.json();
+    console.log("Login attempt:", username);
 
-    if (!username || !password) {
-      return NextResponse.json({ message: "Missing username or password" }, { status: 400 });
-    }
+    const params = {
+      TableName: "Users",
+      IndexName: "username-index", // ชื่อ GSI
+      KeyConditionExpression: "username = :u",
+      ExpressionAttributeValues: {
+        ":u": username,
+      },
+      Limit: 1,
+    };
 
-    const params = { TableName: "Users" };
-    const result = await ddbDocClient.send(new ScanCommand(params));
+    const data = await ddbDocClient.send(new QueryCommand(params));
+    console.log("Query result:", data);
 
-    const user = result.Items?.find((u: any) => u.username === username);
-    if (!user) {
+    if (!data.Items || data.Items.length === 0) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    const validPassword = await bcrypt.compare(password, user.password);
-    if (!validPassword) {
+    const user = data.Items[0];
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
       return NextResponse.json({ message: "Invalid password" }, { status: 401 });
     }
 
-    // auth with JWT
-    // const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET!);
-
-    return NextResponse.json({
-      message: "Login successful",
-      user: { id: user.id, username: user.username, role: user.role },
-    });
-  } catch (error) {
-    console.error("Login error:", error);
-    return NextResponse.json({ message: "Error during login", error }, { status: 500 });
+    return NextResponse.json(
+      {
+        message: "Login successful",
+        user: {
+          username: user.username,
+          email: user.email,
+          role: user.role,
+        },
+      },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.error("Login Error:", err);
+    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }
