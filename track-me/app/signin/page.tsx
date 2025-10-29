@@ -58,30 +58,30 @@ export default function Signin() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div className="bg-blue-100 min-h-screen flex items-center justify-center pt-24">
       <div className="bg-white p-12 md:p-14 rounded-3xl shadow-2xl border border-gray-200 w-full max-w-xl">
         <h1 className="text-4xl font-bold text-center text-blue-800 mb-8">Sign In</h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block font-medium mb-2">Username</label>
+            <label className="text-black block font-medium mb-2">Username</label>
             <input
               type="text"
               name="username"
               value={formData.username}
               onChange={handleChange}
               required
-              className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
             />
           </div>
           <div>
-            <label className="block font-medium mb-2">Password</label>
+            <label className="text-black block font-medium mb-2">Password</label>
             <input
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
             />
           </div>
           <button

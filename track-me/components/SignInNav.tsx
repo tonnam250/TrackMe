@@ -25,8 +25,7 @@ export default function HomeNav() {
             <div className="hidden sm:flex sm:justify-center sm:items-center sm:space-x-2 md:space-x-5">
                 <Link href="/">Home</Link>
                 <Link href="/Tracking">Tracking</Link>
-                <Link href="/">Contact</Link>
-                <Link href="/signup" className="p-2 bg-white text-[#0052CC] rounded-lg shadow-lg">Sign Up</Link>
+                <Link href="/contact">Contact</Link>
             </div>
             {/* desktop nav */}
 
@@ -41,9 +40,8 @@ export default function HomeNav() {
                 <div className="flex flex-col justify-center items-center space-y-10">
                     <Link href="/">Home</Link>
                     <Link href="/Tracking">Tracking</Link>
-                    <Link href="/">Contact</Link>
+                    <Link href="/contact">Contact</Link>
                 </div>
-                <a href="/" className="p-2 bg-white text-[#0052CC] rounded-lg shadow-lg w-full text-center">Sign In</a>
             </div>
             {/* end sidebar */}
         </div>
