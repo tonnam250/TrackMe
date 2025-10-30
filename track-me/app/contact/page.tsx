@@ -2,7 +2,7 @@
 import React from "react";
 
 export default function Contact() {
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("Message sent!");
   };
@@ -18,7 +18,7 @@ export default function Contact() {
           {/* Form */}
           <div className="flex-1">
             <h2 className="text-4xl font-semibold text-blue-800 mb-4">
-              Sent a message
+              Send a message
             </h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input
@@ -56,8 +56,7 @@ export default function Contact() {
             <ul className="space-y-3 text-gray-700 mb-6">
               <li className="flex items-center gap-2">
                 <span>📧</span>
-                <span>66070253@kmitl.ac.th,</span>
-                <span>66070144@kmitl.ac.th</span>
+                <span>66070253@kmitl.ac.th, 66070144@kmitl.ac.th</span>
               </li>
               <li className="flex items-center gap-2">
                 <span>📞</span>
