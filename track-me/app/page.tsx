@@ -10,7 +10,7 @@ export default function Home() {
           <h2 className="self-center sm:self-center sm:text-xl md:text-3xl lg:text-4xl">“ ── The package tracking website.”</h2>
         </div>
         <div className="flex justify-center items-center mt-3 sm:text-xl md:text-3xl lg:text-5xl">
-          <a href="/Tracking">
+          <a href="/tracking">
             <button className="bg-[#0052CC] text-white p-2 md:p-3 lg:p-4 lg:rounded-2xl rounded-lg border border-black">
               Track Now
             </button>
