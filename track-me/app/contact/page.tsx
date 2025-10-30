@@ -56,8 +56,8 @@ export default function Contact() {
             <ul className="space-y-3 text-gray-700 mb-6">
               <li className="flex items-center gap-2">
                 <span>📧</span>
-                <span>66070253@kmitl.ac.th</span>
-                <span>66070144ฆ@kmitl.ac.th</span>
+                <span>66070253@kmitl.ac.th,</span>
+                <span>66070144@kmitl.ac.th</span>
               </li>
               <li className="flex items-center gap-2">
                 <span>📞</span>
