@@ -1,37 +1,34 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-interface User {
+interface Shipment {
   id: string;
-  username: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  address: string;
-  role: string;
+  tracking: string;
+  courier: string;
+  status: string;
+  lastUpdate: string;
+  location: string;
 }
 
-export default function UserManagementPage() {
-  const router = useRouter();
-  const [users, setUsers] = useState<User[]>([]);
+export default function ShipmentManagementPage() {
+  const [shipments, setShipments] = useState<Shipment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetchUsers();
+    fetchShipments();
   }, []);
 
-  async function fetchUsers() {
+  async function fetchShipments() {
     try {
       setLoading(true);
-      const res = await fetch("/api/users");
+      const res = await fetch("/api/shipments");
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Error fetching users");
-      setUsers(data.users || []);
+      if (!res.ok) throw new Error(data.message || "Error fetching shipments");
+      setShipments(data.shipments || []);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -40,13 +37,14 @@ export default function UserManagementPage() {
   }
 
   async function handleDelete(id: string) {
-    if (!confirm("Are you sure you want to delete this user?")) return;
+    if (!confirm("Are you sure you want to delete this shipment?")) return;
 
     try {
-      const res = await fetch(`/api/users/${id}`, { method: "DELETE" });
-      if (!res.ok) throw new Error("Failed to delete user");
-      setMessage("User deleted successfully!");
-      setUsers((prev) => prev.filter((u) => u.id !== id));
+      const res = await fetch(`/api/shipments/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Failed to delete shipment");
+      setMessage("Shipment deleted successfully!");
+      // ลบออกจาก state ทันที
+      setShipments((prev) => prev.filter((s) => s.id !== id));
       setTimeout(() => setMessage(""), 2000);
     } catch (err: any) {
       alert(err.message);
@@ -57,18 +55,20 @@ export default function UserManagementPage() {
     <div className="min-h-screen bg-blue-100 pt-24">
       <div className="flex justify-between items-center mb-10 px-6 md:px-10">
         <h1 className="md:text-6xl font-extrabold text-blue-800 mb-14 drop-shadow-sm">
-          User Management
+          Warehouse
         </h1>
-        <button
-          onClick={() => router.push("/admin/user/adduser")}
+        <Link
+          href="/admin/warehouse/addshipment"
           className="bg-blue-700 text-white px-6 py-4 rounded-xl font-semibold shadow-md hover:scale-105 hover:bg-blue-800 transition-transform duration-200"
         >
-          + Add User
-        </button>
+          + Add Shipment
+        </Link>
       </div>
 
       {message && (
-        <p className="text-center text-green-700 font-semibold mb-4">{message}</p>
+        <p className="text-center text-green-700 font-semibold mb-4">
+          {message}
+        </p>
       )}
       {error && (
         <p className="text-center text-red-600 font-semibold mb-4">{error}</p>
@@ -79,48 +79,50 @@ export default function UserManagementPage() {
           <table className="w-full border-collapse text-left text-gray-800 min-w-[700px]">
             <thead className="bg-blue-700 text-white">
               <tr>
-                <th className="p-4 font-medium">Username</th>
-                <th className="p-4 font-medium">Name</th>
-                <th className="p-4 font-medium">Email</th>
-                <th className="p-4 font-medium">Phone</th>
-                <th className="p-4 font-medium">Address</th>
-                <th className="p-4 font-medium">Role</th>
+                <th className="p-4 font-medium">Tracking #</th>
+                <th className="p-4 font-medium">Courier</th>
+                <th className="p-4 font-medium">Status</th>
+                <th className="p-4 font-medium">Last Update</th>
+                <th className="p-4 font-medium">Location</th>
                 <th className="p-4 text-center font-medium">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {users.map((u) => (
+              {shipments.map((s) => (
                 <tr
-                  key={u.id}
+                  key={s.id}
                   className="border-b border-gray-100 hover:bg-blue-50 transition"
                 >
-                  <td className="p-4 font-medium">{u.username}</td>
-                  <td className="p-4">{`${u.first_name} ${u.last_name}`}</td>
-                  <td className="p-4">{u.email}</td>
-                  <td className="p-4">{u.phone}</td>
-                  <td className="p-4">{u.address}</td>
+                  <td className="p-4 font-medium">{s.tracking}</td>
+                  <td className="p-4">{s.courier}</td>
                   <td className="p-4">
                     <span
                       className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                        u.role === "Admin"
+                        s.status === "Delivered"
                           ? "bg-green-100 text-green-800"
+                          : s.status === "In Transit"
+                          ? "bg-yellow-100 text-yellow-800"
                           : "bg-gray-100 text-gray-800"
                       }`}
                     >
-                      {u.role}
+                      {s.status}
                     </span>
                   </td>
+                  <td className="p-4">
+                    {new Date(s.lastUpdate).toLocaleString()}
+                  </td>
+                  <td className="p-4">{s.location}</td>
                   <td className="p-4 text-center flex justify-center gap-2">
                     <button
                       onClick={() =>
-                        router.push(`/admin/user/updateuser?id=${u.id}`)
+                        (window.location.href = `/admin/warehouse/updateshipment/${s.id}`)
                       }
                       className="bg-blue-600 text-white px-4 py-1 rounded-lg hover:bg-blue-700 hover:scale-105 transition-transform duration-150"
                     >
                       Edit
                     </button>
                     <button
-                      onClick={() => handleDelete(u.id)}
+                      onClick={() => handleDelete(s.id)}
                       className="bg-red-600 text-white px-4 py-1 rounded-lg hover:bg-red-700 hover:scale-105 transition-transform duration-150"
                     >
                       Delete
@@ -129,13 +131,13 @@ export default function UserManagementPage() {
                 </tr>
               ))}
 
-              {users.length === 0 && !loading && (
+              {shipments.length === 0 && !loading && (
                 <tr>
                   <td
-                    colSpan={7}
+                    colSpan={6}
                     className="text-center py-6 text-gray-500 font-medium"
                   >
-                    No users found
+                    No shipments found
                   </td>
                 </tr>
               )}
