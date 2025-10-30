@@ -24,7 +24,7 @@ export default function HomeNav() {
             {/* desktop nav */}
             <div className="hidden sm:flex sm:justify-center sm:items-center sm:space-x-2 md:space-x-5">
                 <Link href="/">Home</Link>
-                <Link href="/Tracking">Tracking</Link>
+                <Link href="/tracking">Tracking</Link>
                 <Link href="/contact">Contact</Link>
             </div>
             {/* desktop nav */}
@@ -39,7 +39,7 @@ export default function HomeNav() {
 
                 <div className="flex flex-col justify-center items-center space-y-10">
                     <Link href="/">Home</Link>
-                    <Link href="/Tracking">Tracking</Link>
+                    <Link href="/tracking">Tracking</Link>
                     <Link href="/contact">Contact</Link>
                 </div>
             </div>
