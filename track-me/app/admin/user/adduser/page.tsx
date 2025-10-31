@@ -7,6 +7,7 @@ export default function AddUserPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     username: "",
+    password: "",
     first_name: "",
     last_name: "",
     email: "",
@@ -54,16 +55,29 @@ export default function AddUserPage() {
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6 text-black">
-          <div>
-            <label className="block mb-2 font-semibold text-blue-900">Username</label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              className="w-full border border-gray-400 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
+          <div className="flex gap-4">
+            <div className="flex-1">
+              <label className="block mb-2 font-semibold text-blue-900">Username</label>
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                className="w-full border border-gray-400 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                required
+              />
+            </div>
+            <div className="flex-1">
+              <label className="block mb-2 font-semibold text-blue-900">Password</label>
+              <input
+                type="text"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full border border-gray-400 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                required
+              />
+            </div>
           </div>
 
           <div className="flex gap-4">
@@ -137,6 +151,7 @@ export default function AddUserPage() {
               <option value="">-- Select Role --</option>
               <option value="Admin">Admin</option>
               <option value="User">User</option>
+              <option value="Carrier">Carrier</option>
             </select>
           </div>
 

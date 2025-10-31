@@ -28,7 +28,7 @@ export async function GET(_req: Request, { params }: { params: { userId: string 
 export async function PATCH(req: Request, { params }: { params: { userId: string } }) {
   try {
     const body = await req.json();
-    
+
     // Create UpdateExpression for DynamoDB
     const updateParams = {
       TableName: "Users",

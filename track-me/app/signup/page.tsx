@@ -10,8 +10,8 @@ export default function Signup() {
   const [modalButtonColor, setModalButtonColor] = useState("");
 
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
+    first_name: "",
+    last_name: "",
     username: "",
     email: "",
     password: "",
@@ -41,7 +41,7 @@ export default function Signup() {
         setModalMessage("User created successfully!");
         setModalTopic("Successful!");
         setModalButtonColor("bg-green-600");
-        setFormData({ firstname: "", lastname: "", username: "", email: "", password: "", confirmPassword: "", phone: "", address: "" });
+        setFormData({ first_name: "", last_name: "", username: "", email: "", password: "", confirmPassword: "", phone: "", address: "" });
       }
       setModalOpen(true);
     } catch (err) {
@@ -62,9 +62,9 @@ export default function Signup() {
           <label className="text-black block font-medium mb-2">Firstname</label>
           <input
             type="text"
-            name="firstname"
+            name="first_name"
             placeholder="Firstname"
-            value={formData.firstname}
+            value={formData.first_name}
             onChange={handleChange}
             required
             className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"
@@ -74,9 +74,9 @@ export default function Signup() {
           <label className="text-black block font-medium mb-2">Surname</label>
           <input
             type="text"
-            name="lastname"
+            name="last_name"
             placeholder="Surname"
-            value={formData.lastname}
+            value={formData.last_name}
             onChange={handleChange}
             required
             className="w-full border border-gray-400 rounded-lg p-3.5 focus:ring-2 focus:ring-blue-500 text-black"

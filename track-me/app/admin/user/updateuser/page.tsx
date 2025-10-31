@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 export default function UpdateUserPage() {
   const router = useRouter();
   const params = useParams();
-  const id = params?.id as string;
+  const userId = params.userId as string;
 
   const [formData, setFormData] = useState({
     username: "",
@@ -23,23 +23,27 @@ export default function UpdateUserPage() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if (id) fetchUser();
-  }, [id]);
+    if (userId) fetchUser();
+  }, [userId]);
 
   async function fetchUser() {
     try {
-      const res = await fetch(`/api/users/${id}`);
+      const res = await fetch(`/api/users/${userId}`);
       const data = await res.json();
+
       if (!res.ok) throw new Error(data.message || "Error fetching user");
 
+      // backend user object
+      const user = data.user || data;
+
       setFormData({
-        username: data.user.username || "",
-        first_name: data.user.first_name || "",
-        last_name: data.user.last_name || "",
-        email: data.user.email || "",
-        phone: data.user.phone || "",
-        address: data.user.address || "",
-        role: data.user.role || "",
+        username: user.username || "",
+        first_name: user.first_name || "",
+        last_name: user.last_name || "",
+        email: user.email || "",
+        phone: user.phone || "",
+        address: user.address || "",
+        role: user.role || "",
       });
     } catch (err: any) {
       setMessage(err.message);
@@ -58,8 +62,8 @@ export default function UpdateUserPage() {
     setMessage("");
 
     try {
-      const res = await fetch(`/api/users/${id}`, {
-        method: "PUT",
+      const res = await fetch(`/api/users/${userId}`, {
+        method: "PATCH", // ให้ตรงกับ backend PATCH
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
