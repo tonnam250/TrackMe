@@ -10,12 +10,18 @@ interface Checkpoint {
   location: string;
 }
 
+interface Event {
+  eventTime: string;
+  status: string;
+  location: string;
+}
+
 interface Shipment {
   id: string;
   trackingId: string;
   carrier?: string;
   currentLocation?: string;
-  // อื่น ๆ ตาม table
+  status?: string;
 }
 
 export default function TrackingStatusPage() {
@@ -78,7 +84,7 @@ export default function TrackingStatusPage() {
         if (!res.ok) {
           setError(data.message || "Tracking not found.");
         } else {
-          const mappedCheckpoints: Checkpoint[] = (data.events || []).map((e: any) => ({
+          const mappedCheckpoints: Checkpoint[] = (data.events || []).map((e: Event) => ({
             date: e.eventTime.split("T")[0],
             time: e.eventTime.split("T")[1].split(".")[0],
             status: e.status,
