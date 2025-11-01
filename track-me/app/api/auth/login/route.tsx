@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
     const params = {
       TableName: "Users",
-      IndexName: "username-index", // ชื่อ GSI
+      IndexName: "username-index",
       KeyConditionExpression: "username = :u",
       ExpressionAttributeValues: {
         ":u": username,

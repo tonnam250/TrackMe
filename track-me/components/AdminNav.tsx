@@ -26,6 +26,7 @@ export default function HomeNav() {
                 <Link href="/admin/dashboard" className="px-3 py-1 bg-white text-[#0052CC] rounded-lg">Dashboard</Link>
                 <Link href="/admin/user" className="px-3 py-1 bg-white text-[#0052CC] rounded-lg">User Management</Link>
                 <Link href="/admin/warehouse" className="px-3 py-1 bg-white text-[#0052CC] rounded-lg">Warehouse</Link>
+                <button className="bg-white px-3 py-1 text-red-600 rounded-lg">Sign out</button>
             </div>
             {/* desktop nav */}
 
@@ -41,6 +42,7 @@ export default function HomeNav() {
                 <Link href="/admin/dashboard" className="px-3 py-1 bg-white text-[#0052CC] rounded-lg">Dashboard</Link>
                 <Link href="/admin/user" className="px-3 py-1 bg-white text-[#0052CC] rounded-lg">User Management</Link>
                 <Link href="/admin/warehouse" className="px-3 py-1 bg-white text-[#0052CC] rounded-lg">Warehouse</Link>
+                <button className="bg-white px-3 py-1 text-red-600 rounded-lg">Sign out</button>
                 </div>
             </div>
             {/* end sidebar */}
