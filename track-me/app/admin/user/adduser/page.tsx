@@ -70,7 +70,7 @@ export default function AddUserPage() {
             <div className="flex-1">
               <label className="block mb-2 font-semibold text-blue-900">Password</label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
