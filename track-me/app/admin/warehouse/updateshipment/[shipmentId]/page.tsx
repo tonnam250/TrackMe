@@ -1,16 +1,18 @@
 "use client";
 
 import { useState, useEffect, FormEvent } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
 export default function UpdateShipmentPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const shipmentId = searchParams.get("id"); // ดึง id จาก query เช่น /update-shipment?id=xxx
+  const params = useParams();
+  const shipmentId = params.shipmentId; // ดึง shipmentId จาก dynamic route
 
   const [formData, setFormData] = useState({
-    tracking: "",
-    courier: "",
+    trackingId: "",
+    carrier: "",
+    status: "",
+    currentLocation: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -26,8 +28,10 @@ export default function UpdateShipmentPage() {
         if (!res.ok) throw new Error("Shipment not found");
         const data = await res.json();
         setFormData({
-          tracking: data.tracking || "",
-          courier: data.courier || "",
+          trackingId: data.shipment.trackingId || "",
+          carrier: data.shipment.carrier || "",
+          status: data.shipment.status || "",
+          currentLocation: data.shipment.currentLocation || "",
         });
       } catch (err: any) {
         setMessage(err.message);
@@ -40,7 +44,8 @@ export default function UpdateShipmentPage() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   // อัปเดต shipment
@@ -53,7 +58,10 @@ export default function UpdateShipmentPage() {
       const res = await fetch(`/api/shipments/${shipmentId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          status: formData.status,
+          currentLocation: formData.currentLocation,
+        }),
       });
 
       const data = await res.json();
@@ -79,7 +87,7 @@ export default function UpdateShipmentPage() {
       });
       if (!res.ok) throw new Error("Failed to delete shipment");
       setMessage("Shipment deleted successfully!");
-      setTimeout(() => router.push("/warehouse"), 1000);
+      setTimeout(() => router.push("/admin/warehouse"), 1000);
     } catch (err: any) {
       setMessage(err.message);
     } finally {
@@ -95,46 +103,86 @@ export default function UpdateShipmentPage() {
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6 text-black">
+          {/* Tracking ID (ล็อค) */}
           <div>
             <label className="block mb-2 font-semibold text-blue-900">
-              Tracking Number
+              Tracking ID
             </label>
             <input
               type="text"
-              name="tracking"
-              value={formData.tracking}
-              onChange={handleChange}
-              className="w-full border border-gray-400 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
+              name="trackingId"
+              value={formData.trackingId}
+              disabled
+              className="w-full border border-gray-400 rounded-lg p-3 bg-gray-100 focus:outline-none"
             />
           </div>
 
+          {/* Carrier (ล็อค) */}
           <div>
             <label className="block mb-2 font-semibold text-blue-900">
-              Courier
+              Carrier
+            </label>
+            <input
+              type="text"
+              name="carrier"
+              value={formData.carrier}
+              disabled
+              className="w-full border border-gray-400 rounded-lg p-3 bg-gray-100 focus:outline-none"
+            />
+          </div>
+
+          {/* Status */}
+          <div>
+            <label className="block mb-2 font-semibold text-blue-900">
+              Status
             </label>
             <select
-              name="courier"
-              value={formData.courier}
+              name="status"
+              value={formData.status}
               onChange={handleChange}
-              className="w-full border border-gray-400 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-black"
               required
+              className="w-full border border-gray-400 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-black"
             >
-              <option value="">-- Select Courier --</option>
-              <option value="Kerry Express">Kerry Express</option>
-              <option value="Flash Express">Flash Express</option>
-              <option value="DHL">DHL</option>
-              <option value="J&T Express">J&T Express</option>
-              <option value="Thailand Post">Thailand Post</option>
+              <option value="">-- Select Status --</option>
+              <option value="Pending">Pending</option>
+              <option value="In Transit">In Transit</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
             </select>
           </div>
 
+          {/* Current Location */}
+          <div>
+            <label className="block mb-2 font-semibold text-blue-900">
+              Current Location
+            </label>
+            <input
+              type="text"
+              name="currentLocation"
+              value={formData.currentLocation}
+              onChange={handleChange}
+              required
+              className="w-full border border-gray-400 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+
+          {/* ปุ่มบันทึก */}
           <button
             type="submit"
             disabled={loading}
             className="bg-blue-700 text-white w-full py-4 rounded-lg font-semibold hover:bg-blue-800 transition"
           >
             {loading ? "Saving..." : "Save Changes"}
+          </button>
+
+          {/* ปุ่มลบ */}
+          <button
+            type="button"
+            onClick={handleDelete}
+            disabled={loading}
+            className="bg-red-600 text-white w-full py-4 rounded-lg font-semibold hover:bg-red-700 transition mt-2"
+          >
+            Delete Shipment
           </button>
 
           {message && (

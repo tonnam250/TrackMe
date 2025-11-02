@@ -47,7 +47,7 @@ export default function Signin() {
 
       // Optionally redirect after modal
       setTimeout(() => {
-        if (data.user.role === "Admin") {
+        if (data.user.role === "Admin" || data.user.role === "Carrier") {
           window.location.href = "/admin/dashboard";
         } else {
           window.location.href = "/";

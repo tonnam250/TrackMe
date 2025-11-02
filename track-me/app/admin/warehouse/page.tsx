@@ -5,11 +5,11 @@ import Link from "next/link";
 
 interface Shipment {
   id: string;
-  tracking: string;
-  courier: string;
+  trackingId: string;
+  carrier: string;
   status: string;
-  lastUpdate: string;
-  location: string;
+  sentTime: string;
+  currentLocation: string;
 }
 
 export default function ShipmentManagementPage() {
@@ -93,25 +93,11 @@ export default function ShipmentManagementPage() {
                   key={s.id}
                   className="border-b border-gray-100 hover:bg-blue-50 transition"
                 >
-                  <td className="p-4 font-medium">{s.tracking}</td>
-                  <td className="p-4">{s.courier}</td>
-                  <td className="p-4">
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                        s.status === "Delivered"
-                          ? "bg-green-100 text-green-800"
-                          : s.status === "In Transit"
-                          ? "bg-yellow-100 text-yellow-800"
-                          : "bg-gray-100 text-gray-800"
-                      }`}
-                    >
-                      {s.status}
-                    </span>
-                  </td>
-                  <td className="p-4">
-                    {new Date(s.lastUpdate).toLocaleString()}
-                  </td>
-                  <td className="p-4">{s.location}</td>
+                  <td className="p-4 font-medium">{s.trackingId}</td>
+                  <td className="p-4">{s.carrier}</td>
+                  <td className="p-4">{s.status}</td>
+                  <td className="p-4">{new Date(s.sentTime).toLocaleString()}</td>
+                  <td className="p-4">{s.currentLocation}</td>
                   <td className="p-4 text-center flex justify-center gap-2">
                     <button
                       onClick={() =>

@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 export default function AddShipmentPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    tracking: "",
-    courier: "",
+    trackingId: "",  // เปลี่ยนจาก tracking
+    carrier: "",     // เปลี่ยนจาก courier
   });
 
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ export default function AddShipmentPage() {
       const res = await fetch("/api/shipments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData),  // จะส่ง { trackingId, carrier } ตาม API
       });
 
       const data = await res.json();
@@ -57,8 +57,8 @@ export default function AddShipmentPage() {
             </label>
             <input
               type="text"
-              name="tracking"
-              value={formData.tracking}
+              name="trackingId" // เปลี่ยนตรงนี้
+              value={formData.trackingId}
               onChange={handleChange}
               className="w-full border border-gray-400 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -70,8 +70,8 @@ export default function AddShipmentPage() {
               Courier
             </label>
             <select
-              name="courier"
-              value={formData.courier}
+              name="carrier" // เปลี่ยนตรงนี้
+              value={formData.carrier}
               onChange={handleChange}
               className="w-full border border-gray-400 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-black"
               required
@@ -83,7 +83,7 @@ export default function AddShipmentPage() {
               <option value="J&T Express">J&T Express</option>
               <option value="Thailand Post">Thailand Post</option>
             </select>
-          </div> 
+          </div>
 
           <button
             type="submit"
