@@ -25,28 +25,28 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // useEffect(() => {
-  //   const fetchProfile = async () => {
-  //     try {
-  //       const res = await fetch("/api/profile");
-  //       if (!res.ok) throw new Error("Failed to fetch profile");
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await fetch(`/api/users/${usersId}`);
+        if (!res.ok) throw new Error(`Failed to fetch users/${usersId}`);
 
-  //       const json = await res.json();
-  //       setUser(json.user);
-  //       setShipments(json.shipments);
-  //     } catch (err: any) {
-  //       console.error(err);
-  //       setError(err.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+        const json = await res.json();
+        setUser(json.user);
+        setShipments(json.shipments);
+      } catch (err: any) {
+        console.error(err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //   fetchProfile();
-  // }, []);
+    fetchProfile();
+  }, []);
 
-  // if (loading) return <p className="p-10">Loading...</p>;
-  // if (error) return <p className="p-10 text-red-500">{error}</p>;
+  if (loading) return <p className="p-10">Loading...</p>;
+  if (error) return <p className="p-10 text-red-500">{error}</p>;
 
   return (
     <div className="min-h-screen bg-blue-100 pt-25 md:px-10">

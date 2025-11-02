@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { ddbDocClient } from "@/lib/dynamo";
 import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 import bcrypt from "bcryptjs";
+import { createToken } from '@/lib/jwt'
 
 export async function POST(req: Request) {
   try {
@@ -32,6 +33,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "Invalid password" }, { status: 401 });
     }
 
+    const token = await createToken({ id: user.id, username: user.username, role: user.role });
+
     return NextResponse.json(
       {
         message: "Login successful",
@@ -40,8 +43,9 @@ export async function POST(req: Request) {
           email: user.email,
           role: user.role,
         },
+        token
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (err) {
     console.error("Login Error:", err);
