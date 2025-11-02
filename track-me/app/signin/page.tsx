@@ -43,10 +43,15 @@ export default function Signin() {
       // Save login state
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem('token', data.token);
 
       // Optionally redirect after modal
       setTimeout(() => {
-        window.location.href = "/";
+        if (data.user.role === "Admin" || data.user.role === "Carrier") {
+          window.location.href = "/admin/dashboard";
+        } else {
+          window.location.href = "/";
+        }
       }, 1500);
 
     } catch (err) {

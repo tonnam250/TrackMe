@@ -1,19 +1,21 @@
-import { SignJWT, jwtVerify } from "jose";
+// lib/jwt.ts
+import { SignJWT, jwtVerify } from 'jose';
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+const SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'your-secret-key');
 
-export async function signJwt(payload: object) {
+export async function createToken(payload: object, expiresIn: string = '1h') {
   return await new SignJWT(payload)
-    .setProtectedHeader({ alg: "HS256" })
-    .setExpirationTime("1d")
-    .sign(secret);
+    .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+    .setExpirationTime(expiresIn)
+    .sign(SECRET);
 }
 
-export async function verifyJwt(token: string) {
+export async function verifyToken(token: string) {
   try {
-    const { payload } = await jwtVerify(token, secret);
+    const { payload } = await jwtVerify(token, SECRET);
     return payload;
-  } catch {
+  } catch (err) {
+    console.error('Invalid token', err);
     return null;
   }
 }

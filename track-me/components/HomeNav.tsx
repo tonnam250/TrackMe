@@ -1,11 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function HomeNav() {
     const [isOpen, setIsOpen] = useState(false);
     const [isSignedIn, setIsSignedIn] = useState(false);
+
+    useEffect(() => {
+        const checkToken = () => {
+            const token = localStorage.getItem("token");
+            setIsSignedIn(!!token);
+        };
+
+        checkToken();
+
+        window.addEventListener("storage", checkToken);
+        return () => window.removeEventListener("storage", checkToken);
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.location.href = "/signin";
+    };
 
     return (
         <div className="bg-[#0052CC] w-full h-[70px] sm:h-[70px] md:h-22 md:text-2xl md:px-5 lg:h-20 lg:text-2xl lg:px-8 flex justify-between items-center text-white text-md sm:text-xl px-2 sm:px-4 fixed z-20">
@@ -34,7 +52,7 @@ export default function HomeNav() {
                             Profile
                         </Link>
                         <button
-                            onClick={() => setIsSignedIn(false)}
+                            onClick={handleLogout}
                             className="px-3 py-1 bg-red-500 text-white rounded-lg"
                         >
                             Sign Out
@@ -103,7 +121,7 @@ export default function HomeNav() {
                                 Profile
                             </Link>
                             <button
-                                onClick={() => setIsSignedIn(false)}
+                                onClick={handleLogout}
                                 className="px-3 py-1 bg-red-500 text-white rounded-lg"
                             >
                                 Sign Out
